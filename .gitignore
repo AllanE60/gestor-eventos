@@ -1,0 +1,16 @@
+# Dependencias de Node.js
+# Esto evita subir miles de archivos que se reinstalan con "npm install"
+node_modules/
+
+# Archivos de Entorno (¡EL MÁS IMPORTANTE!)
+# Ignora cualquier archivo .env en la raíz
+.env
+# Ignora cualquier archivo .env en subcarpetas (como tu backend/.env)
+*/.env
+
+# Archivos de Sistema Operativo (Opcional pero recomendado)
+.DS_Store
+Thumbs.db
+
+# Logs de NPM (Opcional)
+npm-debug.log*
