@@ -6,8 +6,11 @@ body {
     background-color: #f4f7f6;
     color: #333;
 }
+/* frontend/css/style.css */
 header {
-    background-color: #3498db;
+    position: relative;
+    /* Cambia este color por el que quieras */
+    background-color: #e74c3c; /* (Ejemplo: un color rojo) */
     color: white;
     padding: 1.5em;
     text-align: center;
@@ -80,4 +83,19 @@ h2 {
 .event-card .share-btn {
     background-color: #bdc3c7;
     color: #333;
+}
+#easter-egg {
+    position: absolute; /* Permite posicionar libremente */
+    top: 10px;          /* Distancia desde la parte superior del header */
+    right: 10px;        /* Distancia desde la derecha del header */
+    color: white;       /* Color del texto (blanco para que contraste con el rojo) */
+    font-size: 0.8em;   /* Tamaño pequeño, como un "guiño" */
+    padding: 5px 8px;   /* Espacio alrededor del texto */
+    border: 1px solid rgba(0, 0, 0, 0.4); /* Borde negro delgado, semitransparente */
+    border-radius: 4px; /* Esquinas ligeramente redondeadas */
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo muy ligeramente transparente */
+    z-index: 100;       /* Asegura que esté por encima de otros elementos */
+    opacity: 0.8;       /* Ligeramente transparente para no ser tan llamativo */
+    /* Para que 'position: absolute' funcione correctamente, el 'header' debe ser 'position: relative' */
+    /* Si no lo es, añádelo a la regla 'header' si aún no está. */
 }
