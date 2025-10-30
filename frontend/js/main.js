@@ -1,7 +1,7 @@
 // frontend/js/main.js
 
 // URL de tu Backend (Node.js/Express)
-const API_BASE_URL = 'http://localhost:5000/api/eventos'; 
+const API_BASE_URL = 'https://gestor-eventos-api.onrender.com/api/eventos';
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchEvents();
