@@ -1,12 +1,12 @@
 // backend/server.js
 
-// PASO 1: Importar 'path'
 const path = require('path');
 
-// PASO 2: Cargar .env usando una ruta absoluta
-// __dirname es la ruta de la carpeta actual (backend)
-// path.resolve() construye la ruta completa a la raíz del proyecto
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') }); 
+// ✅ SOLUCIÓN: Cargar .env SÓLO si NO estamos en 'production'
+// Render automáticamente define NODE_ENV como 'production'
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+}
 
 const express = require('express');
 const cors = require('cors');
@@ -14,6 +14,7 @@ const connectDB = require('./config/db');
 const eventRoutes = require('./routes/eventRoutes'); 
 
 // Conexión a la base de datos
+// (Ahora usará la variable de Render si está en producción)
 connectDB();
 
 const app = express();
