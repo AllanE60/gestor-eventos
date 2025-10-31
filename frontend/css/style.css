@@ -99,3 +99,83 @@ h2 {
     /* Para que 'position: absolute' funcione correctamente, el 'header' debe ser 'position: relative' */
     /* Si no lo es, añádelo a la regla 'header' si aún no está. */
 }
+
+/* ... (Todo tu CSS existente va aquí arriba) ... */
+
+
+/* --- ESTILO DEL BOTÓN DE MODO OSCURO --- */
+#theme-toggle {
+    position: absolute;
+    top: 10px;
+    left: 10px; /* <-- ESTE ES EL CAMBIO (antes 'right') */
+    
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 50%; /* Botón redondo */
+    width: 40px;  /* Tamaño fijo */
+    height: 40px; /* Tamaño fijo */
+    font-size: 1.2em;
+    cursor: pointer;
+    z-index: 100;
+    color: white; /* Color del emoji */
+    transition: all 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- ESTILOS DEL MODO OSCURO --- */
+/* Esta clase 'dark-mode' se añadirá al <body> con JavaScript */
+
+body.dark-mode {
+    /* Tu "azul muy profundo casi negro" para el fondo */
+    background-color: #0d1a2b; 
+    /* Color de texto principal claro */
+    color: #e1e1e1; 
+}
+
+body.dark-mode header {
+    /* El header (antes rojo) será un azul oscuro */
+    background-color: #1a2b3c;
+    border-bottom: 1px solid #333; /* Borde sutil */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode main {
+    /* El fondo de la sección principal (antes blanco) */
+    background-color: #0d1a2b; /* Mismo que el fondo */
+    box-shadow: none;
+}
+
+body.dark-mode .event-card {
+    /* Las tarjetas (antes blancas) */
+    background-color: #1a2b3c;
+    border: 1px solid #333;
+}
+
+/* Cambiamos los títulos a un azul claro para que destaquen */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode .event-card h3 {
+    color: #58a6ff; 
+}
+
+/* Campos de formulario */
+body.dark-mode input, 
+body.dark-mode textarea {
+    background-color: #0d1a2b;
+    color: #e1e1e1;
+    border: 1px solid #333;
+}
+
+/* Ajuste de los botones del header en modo oscuro */
+body.dark-mode #easter-egg {
+    border-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+body.dark-mode #theme-toggle {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
