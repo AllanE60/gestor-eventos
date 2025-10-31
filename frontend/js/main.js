@@ -9,6 +9,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme') || 'light';
     applyTheme(savedTheme);
 
+    const fechaInput = document.getElementById('fecha');
+    const horaInput = document.getElementById('hora');
+
+    // Lógica para el input de Fecha
+    fechaInput.addEventListener('focus', () => {
+        fechaInput.type = 'date';
+    });
+    fechaInput.addEventListener('blur', () => {
+        if (fechaInput.value === '') {
+            fechaInput.type = 'text';
+        }
+    });
+
+    // Lógica para el input de Hora
+    horaInput.addEventListener('focus', () => {
+        horaInput.type = 'time';
+    });
+    horaInput.addEventListener('blur', () => {
+        if (horaInput.value === '') {
+            horaInput.type = 'text';
+        }
+    });
+
     const eventForm = document.getElementById('event-form');
     eventForm.addEventListener('submit', createEvent);
 
