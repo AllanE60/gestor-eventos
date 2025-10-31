@@ -6,6 +6,9 @@ const API_BASE_URL = 'https://gestor-eventos-api.onrender.com/api/eventos';
 document.addEventListener('DOMContentLoaded', () => {
     fetchEvents();
 
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+
     const eventForm = document.getElementById('event-form');
     eventForm.addEventListener('submit', createEvent);
 
@@ -150,3 +153,38 @@ function shareEvent(eventName, url) {
         alert(`🔗 Enlace copiado al portapapeles: ${shareText}`);
     }
 }
+// ... (Todo tu código JS existente de fetchEvents, createEvent, etc. va aquí arriba) ...
+
+
+/* --- LÓGICA DEL MODO OSCURO --- */
+
+// 1. Obtener referencias a los elementos
+const themeToggleBtn = document.getElementById('theme-toggle');
+const body = document.body;
+
+// 2. Función para aplicar el tema y guardarlo en localStorage
+const applyTheme = (theme) => {
+    if (theme === 'dark') {
+        body.classList.add('dark-mode');
+        themeToggleBtn.textContent = '🌙'; // Cambiar emoji a Luna
+        localStorage.setItem('theme', 'dark');
+    } else {
+        body.classList.remove('dark-mode');
+        themeToggleBtn.textContent = '☀️'; // Cambiar emoji a Sol
+        localStorage.setItem('theme', 'light');
+    }
+};
+
+// 3. Event listener para el clic en el botón
+themeToggleBtn.addEventListener('click', () => {
+    // Comprobar si ya está en modo oscuro
+    const isDarkMode = body.classList.contains('dark-mode');
+    
+    if (isDarkMode) {
+        applyTheme('light'); // Si está oscuro, cambiar a claro
+    } else {
+        applyTheme('dark');  // Si está claro, cambiar a oscuro
+    }
+});
+
+/* --- FIN DE LA LÓGICA DEL MODO OSCURO --- */
