@@ -190,3 +190,30 @@ body.dark-mode #theme-toggle {
 body.dark-mode .event-card .delete-btn {
     background-color: #c93c2d; /* Rojo más oscuro */
 }
+/* --- ESTILOS PARA EL CONTENEDOR DE BOTONES --- */
+.event-card-actions {
+    display: flex;      /* Pone los botones en línea */
+    flex-wrap: wrap;    /* Permite que se envuelvan si no caben */
+    gap: 10px;          /* Espacio horizontal entre botones */
+    margin-top: 15px;   /* Espacio entre la descripción y los botones */
+}
+
+/* * --- MEDIA QUERY PARA TELÉFONOS (PANTALLAS PEQUEÑAS) ---
+ * Este código SÓLO se aplica si la pantalla mide 600px o menos 
+ */
+@media (max-width: 600px) {
+
+    /* Hacemos que CADA botón dentro del contenedor ocupe el 100% del ancho */
+    .event-card-actions button {
+        width: 100%;
+        box-sizing: border-box; /* Asegura que el padding no rompa el diseño */
+        margin-bottom: 5px;     /* Pequeño espacio entre botones apilados */
+    }
+
+    /* * Reseteamos el margen izquierdo que tenía el botón de eliminar, 
+     * para que se alinee con los demás cuando esté apilado.
+     */
+    .event-card .delete-btn {
+        margin-left: 0;
+    }
+}

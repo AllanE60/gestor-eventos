@@ -80,10 +80,11 @@ function renderEvents(eventos) {
             <p>📍 <strong>Ubicación:</strong> ${event.ubicacion}</p>
             <p>👥 <strong>Participantes Registrados:</strong> ${event.participantes.length}</p>
             <p>${event.descripcion || 'Sin descripción.'}</p>
-            <button class="register-btn" data-id="${event._id}">Inscribirme</button>
-            <button class="share-btn" data-name="${event.nombre}" data-id="${event._id}">Compartir</button>
-            
-            <button class="delete-btn" data-id="${event._id}">Eliminar 🗑️</button>
+            <div class="event-card-actions">
+                <button class="register-btn" data-id="${event._id}">Inscribirme</button>
+                <button class="share-btn" data-name="${event.nombre}" data-id="${event._id}">Compartir</button>
+                <button class="delete-btn" data-id="${event._id}">Eliminar 🗑️</button>
+            </div>
         `;
         container.appendChild(card);
     });
