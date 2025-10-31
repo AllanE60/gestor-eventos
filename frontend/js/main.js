@@ -82,6 +82,8 @@ function renderEvents(eventos) {
             <p>${event.descripcion || 'Sin descripción.'}</p>
             <button class="register-btn" data-id="${event._id}">Inscribirme</button>
             <button class="share-btn" data-name="${event.nombre}" data-id="${event._id}">Compartir</button>
+            
+            <button class="delete-btn" data-id="${event._id}">Eliminar 🗑️</button>
         `;
         container.appendChild(card);
     });
@@ -121,14 +123,32 @@ async function createEvent(e) {
     }
 }
 
+// frontend/js/main.js
+
 function handleEventActions(e) {
     const target = e.target;
+
+    // Comprueba si se hizo clic en "Inscribirme"
     if (target.classList.contains('register-btn')) {
         promptRegister(target.dataset.id);
+
+    // Comprueba si se hizo clic en "Compartir"
     } else if (target.classList.contains('share-btn')) {
         const eventName = target.dataset.name;
-        const shareUrl = `http://localhost:5500/frontend/index.html#event-${target.dataset.id}`; 
+        // Actualizamos la URL para que use la URL de producción (¡Importante!)
+        const shareUrl = `https://gestor-eventos-orpin.vercel.app/#event-${target.dataset.id}`; 
         shareEvent(eventName, shareUrl);
+    
+    // ✅ NUEVA LÓGICA: Comprueba si se hizo clic en "Eliminar"
+    } else if (target.classList.contains('delete-btn')) {
+        const eventId = target.dataset.id;
+        // Pide confirmación al usuario antes de borrar
+        const confirmed = confirm('¿Estás seguro de que deseas eliminar este evento? Esta acción no se puede deshacer.');
+        
+        // Si el usuario confirma, llama a la función deleteEvent
+        if (confirmed) {
+            deleteEvent(eventId);
+        }
     }
 }
 
@@ -178,6 +198,29 @@ function shareEvent(eventName, url) {
         alert(`🔗 Enlace copiado al portapapeles: ${shareText}`);
     }
 }
+/**
+ * Llama a la API para eliminar un evento
+ */
+async function deleteEvent(eventId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/${eventId}`, {
+            method: 'DELETE', // Usa el método DELETE
+        });
+
+        if (!response.ok) {
+            const data = await response.json();
+            throw new Error(data.msg || 'Error al eliminar el evento.');
+        }
+
+        alert('¡Evento eliminado con éxito!');
+        fetchEvents(); // Recarga la lista de eventos
+    } catch (error) {
+        console.error("Error al eliminar evento:", error);
+        alert(`❌ Error al eliminar: ${error.message}`);
+    }
+}
+
+
 // ... (Todo tu código JS existente de fetchEvents, createEvent, etc. va aquí arriba) ...
 
 

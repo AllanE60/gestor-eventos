@@ -1,16 +1,17 @@
-// backend/routes/eventRoutes.js
-
 const express = require('express');
-// Importamos las funciones de lógica que crearemos en el siguiente paso
-const { getEvents, createEvent, registerParticipant } = require('../controllers/eventController');
+// 1. IMPORTA la nueva función 'deleteEvent'
+const { getEvents, createEvent, registerParticipant, deleteEvent } = require('../controllers/eventController');
 const router = express.Router();
 
-// Ruta Base: /api/eventos
 router.route('/')
-  .get(getEvents)   // GET /api/eventos -> Obtener todos los eventos
-  .post(createEvent); // POST /api/eventos -> Crear un nuevo evento
+  .get(getEvents)
+  .post(createEvent);
 
-// Ruta Específica para Registro: /api/eventos/:id/registro
-router.post('/:id/registro', registerParticipant); // POST para registrar un participante
+// 2. AÑADE esta nueva ruta para el ID
+// Manejará la petición DELETE para un evento específico
+router.route('/:id')
+  .delete(deleteEvent);
+
+router.post('/:id/registro', registerParticipant);
 
 module.exports = router;

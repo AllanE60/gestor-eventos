@@ -179,3 +179,14 @@ body.dark-mode #theme-toggle {
     background: rgba(0, 0, 0, 0.2);
     border-color: rgba(255, 255, 255, 0.4);
 }
+/* --- Estilo del botón Eliminar --- */
+.event-card .delete-btn {
+    background-color: #e74c3c; /* Rojo peligro */
+    color: white;
+    margin-left: 10px; /* Espacio extra */
+}
+
+/* Modo oscuro para el botón eliminar */
+body.dark-mode .event-card .delete-btn {
+    background-color: #c93c2d; /* Rojo más oscuro */
+}

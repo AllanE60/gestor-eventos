@@ -62,3 +62,21 @@ exports.registerParticipant = async (req, res) => {
     res.status(500).json({ error: 'Error en el registro', details: err.message });
   }
 };
+// @desc    Eliminar un evento
+// @route   DELETE /api/eventos/:id
+exports.deleteEvent = async (req, res) => {
+  try {
+    const evento = await Event.findById(req.params.id);
+
+    if (!evento) {
+      return res.status(404).json({ msg: 'Evento no encontrado' });
+    }
+
+    // Usamos el método de Mongoose para encontrar y eliminar por ID
+    await Event.findByIdAndDelete(req.params.id);
+
+    res.json({ msg: 'Evento eliminado correctamente' });
+  } catch (err) {
+    res.status(500).json({ error: 'Error en el servidor al eliminar', details: err.message });
+  }
+};
