@@ -9,28 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme') || 'light';
     applyTheme(savedTheme);
 
-const fechaInput = document.getElementById('fecha');
+    const fechaInput = document.getElementById('fecha');
     const horaInput = document.getElementById('hora');
 
-    /**
-     * Función de ayuda para detectar dispositivos táctiles (móviles/tablets)
-     */
-    const isTouchDevice = () => {
-        return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    }
+    
 
     // Lógica para el input de Fecha
     fechaInput.addEventListener('focus', () => {
         fechaInput.type = 'date';
-        
-        // SOLO mostrar el picker automáticamente si es un dispositivo táctil
-        if (isTouchDevice()) {
-            try {
-                fechaInput.showPicker();
-            } catch (error) {
-                console.warn("showPicker() para fecha no es soportado:", error);
-            }
-        }
     });
     fechaInput.addEventListener('blur', () => {
         if (fechaInput.value === '') {
@@ -41,15 +27,6 @@ const fechaInput = document.getElementById('fecha');
     // Lógica para el input de Hora
     horaInput.addEventListener('focus', () => {
         horaInput.type = 'time';
-        
-        // SOLO mostrar el picker automáticamente si es un dispositivo táctil
-        if (isTouchDevice()) {
-            try {
-                horaInput.showPicker();
-            } catch (error) {
-                console.warn("showPicker() para hora no es soportado:", error);
-            }
-        }
     });
     horaInput.addEventListener('blur', () => {
         if (horaInput.value === '') {
